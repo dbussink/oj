@@ -13,6 +13,7 @@ platform = RUBY_PLATFORM
 version = RUBY_VERSION.split('.')
 puts ">>>>> Creating Makefile for #{type} version #{RUBY_VERSION} on #{platform} <<<<<"
 
+have_header('ruby/st.h')
 have_header('ruby/encoding.h')
 have_func('rb_time_timespec')
 have_func('rb_ivar_count')
@@ -31,7 +32,6 @@ dflags = {
   'HAS_EXCEPTION_MAGIC' => ('ruby' == type && ('1' == version[0] && '9' == version[1])) ? 0 : 1,
   'HAS_GC_GUARD' => ('jruby' != type && 'rubinius' != type) ? 1 : 0,
   'NEEDS_RATIONAL' => 0,
-  'HAS_TOP_LEVEL_ST_H' => ('ree' == type || ('ruby' == type &&  '1' == version[0] && '8' == version[1])) ? 1 : 0,
   'IS_WINDOWS' => is_windows ? 1 : 0,
   'SAFE_CACHE' => is_windows ? 0 : 1,
 }
