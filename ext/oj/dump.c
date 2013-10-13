@@ -928,7 +928,7 @@ dump_time(VALUE obj, Out out) {
     char		*dot = b - 10;
     int			neg = 0;
     long		one = 1000000000;
-#if HAS_RB_TIME_TIMESPEC
+#ifdef HAVE_RB_TIME_TIMESPEC
     struct timespec	ts = rb_time_timespec(obj);
     time_t		sec = ts.tv_sec;
     long		nsec = ts.tv_nsec;
