@@ -3,17 +3,12 @@ rvm:
   - 1.9.2
   - 1.9.3
   - 2.0.0
-  - jruby-18mode
-  - jruby-19mode
   - rbx
   - rbx-19mode
-
-env:
-  - JRUBY_OPTS="-Xcext.enabled=true"
 
 script:
   - gem build oj.gemspec
   - gem install oj-*
-#  - ruby test/tests.rb
-#  - ruby test/test_fast.rb
-#  - ruby test/test_mimic.rb
+  - ruby test/tests.rb
+  - ruby test/test_fast.rb
+  - ruby test/test_mimic.rb
