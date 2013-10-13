@@ -178,7 +178,7 @@ cx_add(CX cx, VALUE obj, const char *key) {
     } else {
 	if (0 != key) {
 	    VALUE	ks = rb_str_new2(key);
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
 	    rb_enc_associate(ks, oj_utf8_encoding);
 #endif
 	    rb_hash_aset(*cx->cur, ks, obj);
@@ -273,7 +273,7 @@ oj_t_parse(char *json) {
 		VALUE	s;
 
 		s = rb_str_new2(op->s);
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
 		rb_enc_associate(s, oj_utf8_encoding);
 #endif
 		cx_add(&cx, s, op->key);

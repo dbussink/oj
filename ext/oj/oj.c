@@ -118,7 +118,7 @@ static VALUE	symbolize_names_sym;
 
 static VALUE	mimic = Qnil;
 
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
 rb_encoding	*oj_utf8_encoding = 0;
 #else
 VALUE		oj_utf8_encoding = Qnil;
@@ -1091,7 +1091,7 @@ hash_test(VALUE self) {
 }
 */
 
-#if !HAS_ENCODING_SUPPORT
+#ifndef HAVE_RUBY_ENCODING_H
 static VALUE
 iconv_encoder(VALUE x) {
     VALUE	iconv;
@@ -1118,7 +1118,7 @@ void Init_oj() {
     rb_require("rational");
 #endif
     rb_require("stringio");
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
     oj_utf8_encoding = rb_enc_find("UTF-8");
 #else
     // need an option to turn this on

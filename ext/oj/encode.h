@@ -32,13 +32,13 @@
 #define __OJ_ENCODE_H__
 
 #include "ruby.h"
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
 #include "ruby/encoding.h"
 #endif
 
 static inline VALUE
 oj_encode(VALUE rstr) {
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
     rb_enc_associate(rstr, oj_utf8_encoding);
 #else
     if (Qnil != oj_utf8_encoding) {

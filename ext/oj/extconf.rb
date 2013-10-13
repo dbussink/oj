@@ -13,6 +13,7 @@ platform = RUBY_PLATFORM
 version = RUBY_VERSION.split('.')
 puts ">>>>> Creating Makefile for #{type} version #{RUBY_VERSION} on #{platform} <<<<<"
 
+have_header('ruby/encoding.h')
 have_func('rb_time_timespec')
 
 dflags = {
@@ -22,8 +23,6 @@ dflags = {
   'RUBY_VERSION_MAJOR' => version[0],
   'RUBY_VERSION_MINOR' => version[1],
   'RUBY_VERSION_MICRO' => version[2],
-  'HAS_ENCODING_SUPPORT' => (('ruby' == type || 'rubinius' == type) &&
-                             (('1' == version[0] && '9' == version[1]) || '2' <= version[0])) ? 1 : 0,
   'HAS_NANO_TIME' => ('ruby' == type && ('1' == version[0] && '9' == version[1]) || '2' <= version[0]) ? 1 : 0,
   'HAS_RSTRUCT' => ('ruby' == type || 'ree' == type || 'tcs-ruby' == type) ? 1 : 0,
   'HAS_IVAR_HELPERS' => ('ruby' == type && !is_windows && (('1' == version[0] && '9' == version[1]) || '2' <= version[0])) ? 1 : 0,

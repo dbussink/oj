@@ -41,7 +41,7 @@ extern "C" {
 #define RSTRING_NOT_MODIFIED
 
 #include "ruby.h"
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
 #include "ruby/encoding.h"
 #endif
 
@@ -173,7 +173,7 @@ extern void	oj_init_doc(void);
 
 extern VALUE	Oj;
 extern struct _Options	oj_default_options;
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RUBY_ENCODING_H
 extern rb_encoding	*oj_utf8_encoding;
 #else
 extern VALUE		oj_utf8_encoding;
