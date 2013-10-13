@@ -15,6 +15,8 @@ puts ">>>>> Creating Makefile for #{type} version #{RUBY_VERSION} on #{platform}
 
 have_header('ruby/encoding.h')
 have_func('rb_time_timespec')
+have_func('rb_ivar_count')
+have_func('rb_ivar_foreach')
 
 dflags = {
   'RUBY_TYPE' => type,
@@ -25,7 +27,6 @@ dflags = {
   'RUBY_VERSION_MICRO' => version[2],
   'HAS_NANO_TIME' => ('ruby' == type && ('1' == version[0] && '9' == version[1]) || '2' <= version[0]) ? 1 : 0,
   'HAS_RSTRUCT' => ('ruby' == type || 'ree' == type || 'tcs-ruby' == type) ? 1 : 0,
-  'HAS_IVAR_HELPERS' => ('ruby' == type && !is_windows && (('1' == version[0] && '9' == version[1]) || '2' <= version[0])) ? 1 : 0,
   'HAS_EXCEPTION_MAGIC' => ('ruby' == type && ('1' == version[0] && '9' == version[1])) ? 0 : 1,
   'HAS_PROC_WITH_BLOCK' => ('ruby' == type && (('1' == version[0] && '9' == version[1]) || '2' <= version[0])) ? 1 : 0,
   'HAS_GC_GUARD' => ('jruby' != type && 'rubinius' != type) ? 1 : 0,

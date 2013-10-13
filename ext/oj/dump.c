@@ -88,7 +88,7 @@ static void	dump_obj_obj(VALUE obj, int depth, Out out);
 static void	dump_struct_comp(VALUE obj, int depth, Out out);
 static void	dump_struct_obj(VALUE obj, int depth, Out out);
 #endif
-#if HAS_IVAR_HELPERS
+#ifdef HAVE_RB_IVAR_FOREACH
 static int	dump_attr_cb(ID key, VALUE value, Out out);
 #endif
 static void	dump_obj_attrs(VALUE obj, VALUE clas, slot_t id, int depth, Out out);
@@ -1276,7 +1276,7 @@ dump_obj_obj(VALUE obj, int depth, Out out) {
     }
 }
 
-#if HAS_IVAR_HELPERS
+#ifdef HAVE_RB_IVAR_FOREACH
 static int
 dump_attr_cb(ID key, VALUE value, Out out) {
     int		depth = out->depth;
@@ -1353,7 +1353,7 @@ dump_obj_attrs(VALUE obj, VALUE clas, slot_t id, int depth, Out out) {
     }
     {
 	int	cnt;
-#if HAS_IVAR_HELPERS
+#ifdef HAVE_RB_IVAR_COUNT
 	cnt = (int)rb_ivar_count(obj);
 #else
 	VALUE		vars = rb_funcall2(obj, oj_instance_variables_id, 0, 0);
@@ -1368,7 +1368,7 @@ dump_obj_attrs(VALUE obj, VALUE clas, slot_t id, int depth, Out out) {
 	    *out->cur++ = ',';
 	}
 	out->depth = depth + 1;
-#if HAS_IVAR_HELPERS
+#ifdef HAVE_RB_IVAR_FOREACH
 	rb_ivar_foreach(obj, dump_attr_cb, (VALUE)out);
 	if (',' == *(out->cur - 1)) {
 	    out->cur--; // backup to overwrite last comma
