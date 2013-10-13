@@ -790,7 +790,7 @@ mimic_walk(VALUE key, VALUE obj, VALUE proc) {
 	    rb_yield(obj);
 	}
     } else {
-#if HAS_PROC_WITH_BLOCK
+#ifdef HAVE_RB_PROC_CALL_WITH_BLOCK
 	VALUE	args[1];
 
 	*args = obj;
