@@ -181,6 +181,7 @@ hat_num(ParseInfo pi, Val parent, const char *key, size_t klen, NumInfo ni) {
 
 static int
 hat_value(ParseInfo pi, Val parent, const char *key, size_t klen, VALUE value) {
+  RB_GC_GUARD(value);
     if (2 == klen && 'u' == key[1] && T_ARRAY == rb_type(value)) {
 #if HAS_RSTRUCT
 	long	len = RARRAY_LEN(value);

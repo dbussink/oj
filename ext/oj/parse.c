@@ -98,6 +98,7 @@ skip_comment(ParseInfo pi) {
 
 static void
 add_value(ParseInfo pi, VALUE rval) {
+  RB_GC_GUARD(rval);
     Val	parent = stack_peek(&pi->stack);
 
     if (0 == parent) { // simple add
