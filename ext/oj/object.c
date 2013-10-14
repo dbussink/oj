@@ -198,7 +198,7 @@ hat_value(ParseInfo pi, Val parent, const char *key, size_t klen, VALUE value) {
 #ifdef HAVE_RB_STRUCT_ALLOC_NOINIT
 	s = rb_struct_alloc_noinit(sc);
 #else
-	s = rb_struct_new(sc);
+#error "Struct support but no rb_struct_alloc_noinit"
 #endif
 	sv = RSTRUCT_PTR(s);
 	if (RSTRUCT_LEN(s) < len - 1) {
