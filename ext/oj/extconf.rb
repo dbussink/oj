@@ -19,6 +19,7 @@ have_func('rb_time_timespec')
 have_func('rb_ivar_count')
 have_func('rb_ivar_foreach')
 have_func('rb_proc_call_with_block')
+have_func('rb_struct_alloc_noinit')
 
 dflags = {
   'RUBY_TYPE' => type,

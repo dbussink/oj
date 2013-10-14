@@ -195,9 +195,7 @@ hat_value(ParseInfo pi, Val parent, const char *key, size_t klen, VALUE value) {
 	    return 1;
 	}
 	sc = rb_const_get(oj_struct_class, rb_to_id(*a));
-	//sc = rb_const_get(oj_struct_class, rb_intern_str(*a));
-	// use encoding as the indicator for Ruby 1.8.7 or 1.9.x
-#if HAS_ENCODING_SUPPORT
+#ifdef HAVE_RB_STRUCT_ALLOC_NOINIT
 	s = rb_struct_alloc_noinit(sc);
 #else
 	s = rb_struct_new(sc);
