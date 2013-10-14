@@ -10,6 +10,7 @@ $VERBOSE = true
 $: << File.join(File.dirname(__FILE__), "../lib")
 $: << File.join(File.dirname(__FILE__), "../ext")
 
+require 'rubygems'
 require 'test/unit'
 require 'stringio'
 require 'oj'
